@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: #9bcbe8;
+  height: 80vh;
+  background-size: cover;
+  
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #001aff, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px;
+  margin: 20px 0;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.fancy-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #000000, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 1.5s infinite alternate;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(255, 78, 80, 0.7), 0 0 10px rgba(249, 212, 35, 0.7);
+}
+
+
+/* Container */
+.container {
+  position: relative;
+  max-width: 1350px;
+  width: 100%;
+  padding: 20px;
+  margin: 50px auto;
+}
+
+/* Filter Buttons */
+.filter_buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #6a5acd;
+  color: white;
+}
+
+button.active {
+  background: #4070f4;
+  color: #fff;
+}
+
+/* Image Gallery */
+.filterable_cards {
+  display: flex;
+  margin-top: 25px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex-basis: 300px;
+  background-color: #fff;
+  padding: 3px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card.hide {
+  display: none;
+}
+
+/* Restore original image size */
+.card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Card Text */
+.card_body {
+  padding: 15px 20px 20px;
+}
+
+.card_title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card_text {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup img {
+  max-width: 75%;
+  max-height: 75%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Blur effect */
+.popup.active ~ .container {
+  filter: blur(5px);
+}
+
+/* Close Button */
+.popup .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 12px;
+  border-radius: 100%;
+  transition: background 0.3s ease;
+}
+
+.popup .close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.popup .prev-btn,
+.popup .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup .prev-btn {
+  left: 20px;
+}
+
+.popup .next-btn {
+  right: 20px;
+}
+
+.popup .prev-btn:hover,
+.popup .next-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Styles for buttons inside popup */
+.popup-btn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background: #4070f4;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.popup-btn:hover {
+  background: #6a5acd;
+}
+
+/* Styles for buttons below each image */
+.card-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  background: #4070f4;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.card-btn:hover {
+  background: #6a5acd;
+}
+
+/* Popup controls (Download & Share buttons inside the popup) */
+.popup-controls {
+  position: absolute;
+  top: 20px;
+  right: 70px; /* Adjust position near the Close button */
+  display: flex;
+  gap: 10px;
+}
+
+.popup-controls .popup-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: #4070f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.popup-controls .popup-btn:hover {
+  background: #6a5acd;
+}
+
+/* Controls below each image */
+.card-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.card-controls .card-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  background: #4070f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card-controls .card-btn:hover {
+  background: #6a5acd;
+}
+
+/* Style for Download and Share buttons in popup */
+.popup-controls {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    display: flex;
+    gap: 10px;
+}
+
+.popup-btn {
+    padding: 8px 15px;
+    font-size: 16px;
+    background: #4070f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-btn:hover {
+    background: #6a5acd;
+}
+
+/* Style for buttons below each image */
+.card-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.card-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #4070f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+    background: #6a5acd;
+}
